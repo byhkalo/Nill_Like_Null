@@ -16,6 +16,26 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    NSNull* helpNull = [NSNull null];
+    
+    [helpNull performSelector:@selector(loadView)];
+    
+    NSNull* secondHelpNull = [[NSNull alloc]init];
+    
+    if ([secondHelpNull isEqual:nil]) {
+        NSLog(@"Cool, something work");
+    }
+    
+    if (secondHelpNull == [NSNull null]) {
+        NSLog(@"Cool, something work");
+    }
+    
+
+    
+    NSLog(@"Hi somebody");
+    
+    
     // Override point for customization after application launch.
     return YES;
 }
