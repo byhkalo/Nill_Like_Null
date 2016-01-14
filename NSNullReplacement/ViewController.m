@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "KBNull.h"
 
 @interface ViewController ()
 
@@ -16,7 +17,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    NSNull* helpNull = [NSNull null];
+    
+    [helpNull performSelector:@selector(loadView)];
+    
+    NSNull* secondHelpNull = [[NSNull alloc]init];
+    
+    if ([secondHelpNull isEqual:nil]) {
+        NSLog(@"Cool, something work");
+    }
+    
+    if (secondHelpNull == [NSNull null]) {
+        NSLog(@"Cool, something work");
+    }
+    
+    if (CGRectIsNull([(id)helpNull frame])) {
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
