@@ -14,6 +14,10 @@
 		2A7159601C47BDCC00A3ED35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A71595F1C47BDCC00A3ED35 /* Assets.xcassets */; };
 		2A7159631C47BDCC00A3ED35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7159611C47BDCC00A3ED35 /* LaunchScreen.storyboard */; };
 		2A71596E1C47BDCC00A3ED35 /* NSNullReplacementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A71596D1C47BDCC00A3ED35 /* NSNullReplacementTests.m */; };
+		2A7159821C47DCBB00A3ED35 /* NSNull+NillReplacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7159811C47DCBB00A3ED35 /* NSNull+NillReplacement.m */; };
+		2A7159851C47E24E00A3ED35 /* KBObjectNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7159841C47E24E00A3ED35 /* KBObjectNull.m */; };
+		2A7159871C47F7EC00A3ED35 /* NSNullTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7159861C47F7EC00A3ED35 /* NSNullTests.m */; };
+		F337CD18D9AD900CA700E873 /* libPods-NSNullReplacementTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 208B5013941660632DDA4DB1 /* libPods-NSNullReplacementTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		094CF6E671CE361B9C40C716 /* Pods-NSNullReplacementTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSNullReplacementTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NSNullReplacementTests/Pods-NSNullReplacementTests.debug.xcconfig"; sourceTree = "<group>"; };
+		208B5013941660632DDA4DB1 /* libPods-NSNullReplacementTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NSNullReplacementTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7159501C47BDCC00A3ED35 /* NSNullReplacement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSNullReplacement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7159541C47BDCC00A3ED35 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A7159561C47BDCC00A3ED35 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -40,6 +46,12 @@
 		2A7159691C47BDCC00A3ED35 /* NSNullReplacementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NSNullReplacementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A71596D1C47BDCC00A3ED35 /* NSNullReplacementTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNullReplacementTests.m; sourceTree = "<group>"; };
 		2A71596F1C47BDCC00A3ED35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A7159801C47DCBB00A3ED35 /* NSNull+NillReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+NillReplacement.h"; sourceTree = "<group>"; };
+		2A7159811C47DCBB00A3ED35 /* NSNull+NillReplacement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+NillReplacement.m"; sourceTree = "<group>"; };
+		2A7159831C47E24E00A3ED35 /* KBObjectNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBObjectNull.h; sourceTree = "<group>"; };
+		2A7159841C47E24E00A3ED35 /* KBObjectNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBObjectNull.m; sourceTree = "<group>"; };
+		2A7159861C47F7EC00A3ED35 /* NSNullTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNullTests.m; sourceTree = "<group>"; };
+		497E867C5F9884424F4A1A3A /* Pods-NSNullReplacementTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSNullReplacementTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NSNullReplacementTests/Pods-NSNullReplacementTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,18 +66,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F337CD18D9AD900CA700E873 /* libPods-NSNullReplacementTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20E702372B30A4083E3FB861 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				094CF6E671CE361B9C40C716 /* Pods-NSNullReplacementTests.debug.xcconfig */,
+				497E867C5F9884424F4A1A3A /* Pods-NSNullReplacementTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		2A7159471C47BDCC00A3ED35 = {
 			isa = PBXGroup;
 			children = (
 				2A7159521C47BDCC00A3ED35 /* NSNullReplacement */,
 				2A71596C1C47BDCC00A3ED35 /* NSNullReplacementTests */,
 				2A7159511C47BDCC00A3ED35 /* Products */,
+				20E702372B30A4083E3FB861 /* Pods */,
+				74351EAF8C97590D0980C882 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,6 +109,8 @@
 				2A7159571C47BDCC00A3ED35 /* AppDelegate.m */,
 				2A7159591C47BDCC00A3ED35 /* ViewController.h */,
 				2A71595A1C47BDCC00A3ED35 /* ViewController.m */,
+				2A71597F1C47DC8700A3ED35 /* Categories */,
+				2A71597E1C47DB2B00A3ED35 /* Inheritors */,
 				2A71595C1C47BDCC00A3ED35 /* Main.storyboard */,
 				2A71595F1C47BDCC00A3ED35 /* Assets.xcassets */,
 				2A7159611C47BDCC00A3ED35 /* LaunchScreen.storyboard */,
@@ -105,10 +131,37 @@
 		2A71596C1C47BDCC00A3ED35 /* NSNullReplacementTests */ = {
 			isa = PBXGroup;
 			children = (
+				2A7159861C47F7EC00A3ED35 /* NSNullTests.m */,
 				2A71596D1C47BDCC00A3ED35 /* NSNullReplacementTests.m */,
 				2A71596F1C47BDCC00A3ED35 /* Info.plist */,
 			);
 			path = NSNullReplacementTests;
+			sourceTree = "<group>";
+		};
+		2A71597E1C47DB2B00A3ED35 /* Inheritors */ = {
+			isa = PBXGroup;
+			children = (
+				2A7159831C47E24E00A3ED35 /* KBObjectNull.h */,
+				2A7159841C47E24E00A3ED35 /* KBObjectNull.m */,
+			);
+			name = Inheritors;
+			sourceTree = "<group>";
+		};
+		2A71597F1C47DC8700A3ED35 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2A7159801C47DCBB00A3ED35 /* NSNull+NillReplacement.h */,
+				2A7159811C47DCBB00A3ED35 /* NSNull+NillReplacement.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		74351EAF8C97590D0980C882 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				208B5013941660632DDA4DB1 /* libPods-NSNullReplacementTests.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,9 +188,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A7159751C47BDCC00A3ED35 /* Build configuration list for PBXNativeTarget "NSNullReplacementTests" */;
 			buildPhases = (
+				F964BD8DF23D56718766C024 /* Check Pods Manifest.lock */,
 				2A7159651C47BDCC00A3ED35 /* Sources */,
 				2A7159661C47BDCC00A3ED35 /* Frameworks */,
 				2A7159671C47BDCC00A3ED35 /* Resources */,
+				3709B43C2783F5268F674295 /* Embed Pods Frameworks */,
+				F7B447811F290A6112C7A842 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -160,6 +216,7 @@
 				TargetAttributes = {
 					2A71594F1C47BDCC00A3ED35 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = TF3HP6N6YC;
 					};
 					2A7159681C47BDCC00A3ED35 = {
 						CreatedOnToolsVersion = 7.2;
@@ -206,12 +263,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3709B43C2783F5268F674295 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NSNullReplacementTests/Pods-NSNullReplacementTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7B447811F290A6112C7A842 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NSNullReplacementTests/Pods-NSNullReplacementTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F964BD8DF23D56718766C024 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2A71594C1C47BDCC00A3ED35 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A7159851C47E24E00A3ED35 /* KBObjectNull.m in Sources */,
 				2A71595B1C47BDCC00A3ED35 /* ViewController.m in Sources */,
+				2A7159821C47DCBB00A3ED35 /* NSNull+NillReplacement.m in Sources */,
 				2A7159581C47BDCC00A3ED35 /* AppDelegate.m in Sources */,
 				2A7159551C47BDCC00A3ED35 /* main.m in Sources */,
 			);
@@ -222,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A71596E1C47BDCC00A3ED35 /* NSNullReplacementTests.m in Sources */,
+				2A7159871C47F7EC00A3ED35 /* NSNullTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,10 +447,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = NSNullReplacement/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anadea.NSNullReplacement;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -350,15 +461,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = NSNullReplacement/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anadea.NSNullReplacement;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
 		2A7159761C47BDCC00A3ED35 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 094CF6E671CE361B9C40C716 /* Pods-NSNullReplacementTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = NSNullReplacementTests/Info.plist;
@@ -371,6 +486,7 @@
 		};
 		2A7159771C47BDCC00A3ED35 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 497E867C5F9884424F4A1A3A /* Pods-NSNullReplacementTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = NSNullReplacementTests/Info.plist;
@@ -400,6 +516,7 @@
 				2A7159741C47BDCC00A3ED35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A7159751C47BDCC00A3ED35 /* Build configuration list for PBXNativeTarget "NSNullReplacementTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +525,7 @@
 				2A7159771C47BDCC00A3ED35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
