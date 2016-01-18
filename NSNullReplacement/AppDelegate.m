@@ -31,7 +31,9 @@
         NSLog(@"Cool, something work");
     }
     
-
+    NSNull* originNull = [[NSNull alloc] init];
+    
+    
     
     NSLog(@"Hi somebody");
     

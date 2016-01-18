@@ -14,13 +14,27 @@
 
 @implementation KBObjectNull
 
+
+
 - (instancetype)init
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         
     }
     return self;
+}
+
++ (instancetype)null
+{
+    // initialize sharedObject as nil (first call only)
+    __strong static id sharedObject = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedObject = (NSNull*)[[KBObjectNull alloc]init];;
+    });
+    // returns the same object each time
+    return sharedObject;
 }
 
 + (Class)class {
