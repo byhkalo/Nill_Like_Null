@@ -17,10 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-       
-//    if (CGRectIsNull([(id)helpNull frame])) {
-//        
-//    }
 }
 
 - (void)didReceiveMemoryWarning {
