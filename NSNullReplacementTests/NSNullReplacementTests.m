@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import <Foundation/Foundation.h>
+#import "KBObjectNull.h"
 
 @interface NSNullReplacementTests : XCTestCase {
    
@@ -52,6 +53,8 @@
     XCTAssertTrue(null == [[NSNull alloc]init], @"Must be equal");
     XCTAssertTrue(null == [NSNull new], @"Must be equal");
     
+    XCTAssertTrue([null class] == [KBObjectNull class]);
+    XCTAssertTrue([null class] == [NSNull class]);
 //    XCTAssertTrue(CGRectIsNull([[NSNull null] valueForKey:@"frame"]) , @"Must return zero");
     
     

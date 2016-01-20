@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface KBObjectNull : NSObject
-
-+(instancetype)null;
+@interface KBObjectNull : NSNull
 
 @end

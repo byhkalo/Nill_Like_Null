@@ -7,6 +7,7 @@
 //
 
 #import "KBObjectNull.h"
+#import <objc/runtime.h>
 
 @interface KBObjectNull()
 
@@ -14,26 +15,22 @@
 
 @implementation KBObjectNull
 
-
-
-- (instancetype)init
-{
-    if (self = [super init]) {
-        
-    }
-    return self;
++(void)load {
+    object_setClass([NSNull null], [KBObjectNull class]);
 }
 
-+ (instancetype)null
-{
-    // initialize sharedObject as nil (first call only)
++(instancetype)new {
     __strong static id sharedObject = nil;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedObject = (NSNull*)[[KBObjectNull alloc]init];;
+        KBObjectNull *sharedObject = (id)[[NSNull alloc] init];
+        Class objClass = object_getClass(sharedObject);
+//        if (![objClass isSubclassOfClass:[KBObjectNull class]]) {
+            object_setClass(sharedObject, [KBObjectNull class]);
+//        }
     });
-    // returns the same object each time
+    
     return sharedObject;
 }
 
@@ -46,23 +43,14 @@
 }
 
 - (BOOL)isEqual:(id)object {
-    
-    if (!object) {
-        return YES;
-    } if ([object isKindOfClass:[NSNull class]] || [object isKindOfClass:[KBObjectNull class]] ) {
-        return YES;
-    }
-    return NO;
+    return (!object || [object isKindOfClass:[NSNull class]] || [object isKindOfClass:[KBObjectNull class]]);
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
     
     // If NSNull doesn't respond to aSelector, signature will be nil and a new signature for an empty method
     // will be created and returned
-    
-    NSMethodSignature *signature = [super methodSignatureForSelector:aSelector];
-    
-    
+    NSMethodSignature *signature = [self methodSignatureForSelector:aSelector];
     
     if (!signature) {
         // Note: "@:" are (id)self and (SEL)_cmd
@@ -72,11 +60,7 @@
     return signature;
 }
 
-- (void)forwardInvocation:(NSInvocation *)anInvocation
-{
-    
-    // Called if NSNull received a message to a non-existent method
-    // Reroute the message to nil
+- (void)forwardInvocation:(NSInvocation *)anInvocation {
     id test = nil;
     [anInvocation invokeWithTarget:test];
 }
