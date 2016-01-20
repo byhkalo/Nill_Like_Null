@@ -10,45 +10,33 @@
 #import "KBObjectNull.h"
 #import <objc/runtime.h>
 
-typedef id(^IDPBlockWithIMP)(IMP implementation);
-typedef void(*IDPForwardInvocationIMP)(id, SEL, id);
-typedef BOOL(*IDPIsEqualIMP)(id, SEL, id);
-typedef id(*KBAllocWithZone)(id, SEL);
+typedef id(^KBBlockWithImplementation)(IMP implementation);
 
 @implementation NSNull (NillReplacement)
 
 + (void)load {
-
-    [self replaceIsEqual];
-    
+    [self replaceAllocWithZone];
+    [self replaceNull];
 }
 
-//+ (void)replaceAllocWithZone {
-//    SEL selector = @selector(isEqual:);
-//    
-//    IDPBlockWithIMP block = ^(IMP implementation) {
-//        IDPIsEqualIMP methodIMP = (IDPIsEqualIMP)implementation;
-//        
-//        return (id)^(KBObjectNull *nullObject, id object) {
-//            if (!object) {
-//                return YES;
-//            }
-//            
-//            return methodIMP(nullObject, selector, object);
-//        };
-//    };
-//    
-//    [self setBlock:block forSelector:selector];
-//}
-
-+ (void)replaceIsEqual {
-    SEL selector = @selector(isEqual:);
++ (instancetype) newNull {
+    __strong static id sharedObject = nil;
     
-    IDPBlockWithIMP block = ^(IMP implementation) {
-        IDPIsEqualIMP methodIMP = (IDPIsEqualIMP)implementation;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedObject = [[KBObjectNull alloc] init];
+    });
+    
+    return sharedObject;
+}
+
++ (void)replaceNull {
+    SEL selector = @selector(null);
+    
+    KBBlockWithImplementation block = ^(IMP implementation) {
         
-        return (id)^(NSNull *nullObject, NSZone) {
-            return [KBObjectNull allocWithZone:zone];
+        return (id)^(NSNull *nullObject) {
+           return [self newNull];
         };
     };
     
@@ -56,16 +44,26 @@ typedef id(*KBAllocWithZone)(id, SEL);
 }
 
 
-+ (void)setBlock:(IDPBlockWithIMP)block forSelector:(SEL)selector {
-    IMP implementation = [self instanceMethodForSelector:selector];
++ (void)replaceAllocWithZone {
+    SEL selector = @selector(allocWithZone:);
     
+    KBBlockWithImplementation block = ^(IMP implementation) {
+        
+        return (id)^(NSNull *nullObject, id zone) {
+            return [self newNull];
+        };
+    };
+    
+    [self setBlock:block forSelector:selector];
+}
+
+
++ (void)setBlock:(KBBlockWithImplementation)block forSelector:(SEL)selector {
+    IMP implementation = [self instanceMethodForSelector:selector];
     IMP blockIMP = imp_implementationWithBlock(block(implementation));
     
-    Method method = class_getInstanceMethod(self, selector);
-    class_replaceMethod(self,
-                        selector,
-                        blockIMP,
-                        method_getTypeEncoding(method));
+    Method method = class_getClassMethod([NSNull class], selector);
+    method_setImplementation(method, blockIMP);
 }
 
 @end

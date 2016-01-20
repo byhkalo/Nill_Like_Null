@@ -17,6 +17,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    NSNull *helpNull = [NSNull null];
+    NSNull *testNull = [[NSNull alloc] init];
+    NSNull *secondHelpNull = [NSNull null];
+    NSNull *secondTestNull = [[NSNull alloc] init];
+    
+    NSLog(@"testlog");
+    
     // Override point for customization after application launch.
     return YES;
 }

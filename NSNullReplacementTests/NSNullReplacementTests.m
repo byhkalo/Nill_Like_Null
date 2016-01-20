@@ -52,6 +52,9 @@
     XCTAssertTrue(null == [[NSNull alloc]init], @"Must be equal");
     XCTAssertTrue(null == [NSNull new], @"Must be equal");
     
+    XCTAssertTrue([NSNull new] == [NSNull new]);
+    
+//    XCTAssertTrue([null class] == [NSNull class]);
 //    XCTAssertTrue(CGRectIsNull([[NSNull null] valueForKey:@"frame"]) , @"Must return zero");
     
     

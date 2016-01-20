@@ -14,19 +14,6 @@
 
 @implementation KBObjectNull
 
-+ (instancetype)null
-{
-    // initialize sharedObject as nil (first call only)
-    __strong static id sharedObject = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedObject = [[KBObjectNull alloc] init];
-    });
-    // returns the same object each time
-    return sharedObject;
-}
-
 + (Class)class {
     return [NSNull class];
 }
@@ -43,7 +30,8 @@
     
     // If NSNull doesn't respond to aSelector, signature will be nil and a new signature for an empty method
     // will be created and returned
-    NSMethodSignature *signature = [super methodSignatureForSelector:aSelector];
+    NSNull *helpNull = (NSNull*)kCFNull;
+    NSMethodSignature *signature = [helpNull methodSignatureForSelector:aSelector];
     
     if (!signature) {
         // Note: "@:" are (id)self and (SEL)_cmd
@@ -53,10 +41,7 @@
     return signature;
 }
 
-- (void)forwardInvocation:(NSInvocation *)anInvocation
-{
-    // Called if NSNull received a message to a non-existent method
-    // Reroute the message to nil
+- (void)forwardInvocation:(NSInvocation *)anInvocation {
     id test = nil;
     [anInvocation invokeWithTarget:test];
 }

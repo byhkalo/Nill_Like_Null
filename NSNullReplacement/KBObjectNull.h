@@ -10,6 +10,4 @@
 
 @interface KBObjectNull : NSObject
 
-+(instancetype)null;
-
 @end
