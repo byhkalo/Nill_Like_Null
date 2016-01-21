@@ -57,4 +57,8 @@
     [anInvocation invokeWithTarget:test];
 }
 
+- (NSUInteger)hash {
+    return (NSInteger)self;
+}
+
 @end

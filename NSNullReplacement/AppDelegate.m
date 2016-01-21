@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NSObject+Subclasses.h"
 
 @interface AppDelegate ()
 
@@ -20,9 +21,9 @@
     NSNull* helpNull = [NSNull null];
     NSNull* secondHelpNull = [[NSNull alloc]init];
     NSNull* originNull = [NSNull new];
-
-    NSLog(@"testlog");
+    NSArray *helpArray = [NSNull returnSubclassesOfClass:[NSArray class]];
     
+    NSLog(@"testlog");
     // Override point for customization after application launch.
     return YES;
 }
