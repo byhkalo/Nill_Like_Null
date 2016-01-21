@@ -19,27 +19,8 @@
     object_setClass([NSNull null], [KBObjectNull class]);
 }
 
-+(instancetype)new {
-    __strong static id sharedObject = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        KBObjectNull *sharedObject = (id)[[NSNull alloc] init];
-        Class objClass = object_getClass(sharedObject);
-//        if (![objClass isSubclassOfClass:[KBObjectNull class]]) {
-            object_setClass(sharedObject, [KBObjectNull class]);
-//        }
-    });
-    
-    return sharedObject;
-}
-
-+ (Class)class {
-    return [NSNull class];
-}
-
 - (Class)class {
-    return [NSNull class];
+    return [KBObjectNull class];
 }
 
 - (BOOL)isEqual:(id)object {
@@ -47,10 +28,9 @@
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
-    
     // If NSNull doesn't respond to aSelector, signature will be nil and a new signature for an empty method
     // will be created and returned
-    NSMethodSignature *signature = [self methodSignatureForSelector:aSelector];
+    NSMethodSignature *signature = [super methodSignatureForSelector:aSelector];
     
     if (!signature) {
         // Note: "@:" are (id)self and (SEL)_cmd
