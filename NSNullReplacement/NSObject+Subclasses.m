@@ -11,7 +11,9 @@
 
 @implementation NSObject (Subclasses)
 
-- (NSArray*)returnSubclassesOfClass:(Class) parentClass {
++ (NSArray*)returnSubclassesOfClass {
+    
+    Class parentClass = [self class];
     int numClasses = objc_getClassList(NULL, 0);
     Class *classes = NULL;
     
