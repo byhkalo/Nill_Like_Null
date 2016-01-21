@@ -15,12 +15,24 @@
 
 @implementation KBObjectNull
 
-+(void)load {
-    object_setClass([NSNull null], [KBObjectNull class]);
+
++ (instancetype)sharedObject {
+    __strong static id sharedObject = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedObject = [KBObjectNull new];
+    });
+
+    return sharedObject;
+}
+
++ (Class)class {
+    return [NSNull class];
 }
 
 - (Class)class {
-    return [KBObjectNull class];
+    return [NSNull class];
 }
 
 - (BOOL)isEqual:(id)object {

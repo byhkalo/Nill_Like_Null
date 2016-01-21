@@ -10,4 +10,6 @@
 
 @interface KBObjectNull : NSNull
 
++ (instancetype)sharedObject;
+
 @end
