@@ -10,4 +10,7 @@
 
 @interface NSNull (NillReplacement)
 
++ (void)logInjectionEnable;
++ (void)logInjectionDisable;
+
 @end

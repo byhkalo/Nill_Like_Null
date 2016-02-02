@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #import <Foundation/Foundation.h>
+#import <objc/runtime.h>
+#import "NSNull+NillReplacement.h"
 #import "KBObjectNull.h"
 
 @interface NSNullReplacementTests : XCTestCase {
@@ -58,6 +60,55 @@
 //    XCTAssertTrue(CGRectIsNull([[NSNull null] valueForKey:@"frame"]) , @"Must return zero");
     
     
+}
+
+- (void)testInjectionMethod {
+    
+    SEL selector = @selector(allocWithZone:);
+    
+    id objectFromClass = [NSNull class];
+    Class class = object_getClass(objectFromClass);
+    XCTAssertTrue(class_isMetaClass(class));
+    
+    
+    IMP implementation = [class instanceMethodForSelector:selector];
+    
+    id block = ^(id blockObject, SEL blockSelector, NSZone *zone) {
+        NSLog(@"Help Log");
+        
+        return ((id(*)(id, SEL, NSZone *))implementation)(blockObject, blockSelector, zone);
+    };
+    
+    IMP blockIMP = imp_implementationWithBlock(block);
+    
+    Method method = class_getInstanceMethod(class, selector);
+    class_replaceMethod(class,
+                        selector,
+                        blockIMP,
+                        method_getTypeEncoding(method));
+    
+    
+    [[objectFromClass alloc] init];
+    
+    [[NSNull alloc] init];
+}
+
+- (void)testInjection {
+    [NSNull logInjectionEnable];
+    
+    NSString *jsonString = @"[{\"id\": null, \"name\":\"Aaa\"}, {\"id\": \"2\", \"name\":\"Bbb\"}]";
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *e = nil;
+    NSMutableArray *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&e];
+    NSLog(@"%@", json);
+    
+    [[NSNull alloc]init];
+    
+    [NSNull logInjectionDisable];
+    
+    [[NSNull alloc]init];
+    
+    NSLog(@"end of injection");
 }
 
 @end
