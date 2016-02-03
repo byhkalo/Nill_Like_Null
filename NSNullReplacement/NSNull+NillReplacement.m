@@ -40,43 +40,32 @@ static IMP implementationAllocWithZone;
     method_setImplementation(method, newImplementation);
 }
 
+#pragma mark -
+#pragma mark Injection -
+
 + (void)logInjectionEnable {
     if (!implementationNew) {
-//        Class class = [NSNull class];
         id objectFromClass = [NSNull class];
         Class class = object_getClass(objectFromClass);
         
         implementationNew = [self replaceClassMethodWithoutParameters:@selector(new) class:class];
         implementationAlloc = [self replaceClassMethodWithoutParameters:@selector(alloc) class:class];
         implementationNull = [self replaceClassMethodWithoutParameters:@selector(null) class:class];
-        implementationAllocWithZone = [self replaceClassMethodWithOneIncomingParameter:@selector(allocWithZone:) class:class];
+        implementationAllocWithZone = [self replaceClassMethodAllocWithZoneInClass:class];
     }
 }
 
-
-+ (IMP)replaceClassMethodNew:(Class)class{
-    SEL selector = @selector(new);
-    IMP implementation = [class instanceMethodForSelector:selector];
-    id block = ^(id blockObject, SEL blockSelector) {
-        NSLog(@"Method new call");
++ (void)logInjectionDisable {
+    if (implementationNew) {
+        id objectFromClass = [NSNull class];
+        Class class = object_getClass(objectFromClass);
         
-        return ((id(*)(id, SEL))implementation)(blockObject, blockSelector);
-    };
-    IMP blockIMP = imp_implementationWithBlock(block);
-    
-    Method method = class_getClassMethod(class, selector);
-    class_replaceMethod(class,
-                        selector,
-                        blockIMP,
-                        method_getTypeEncoding(method));
-    
-    return implementation;
-    
-    //    return method_setImplementation(method, blockIMP);
+        [self replaceMethod:@selector(new) inClass:class byImplementation:implementationNew isResetImplementation:YES];
+        [self replaceMethod:@selector(alloc) inClass:class byImplementation:implementationAlloc isResetImplementation:YES];
+        [self replaceMethod:@selector(null) inClass:class byImplementation:implementationNull isResetImplementation:YES];
+        [self replaceMethod:@selector(allocWithZone:) inClass:class byImplementation:implementationAllocWithZone isResetImplementation:YES];
+    }
 }
-
-
-
 
 + (IMP)replaceClassMethodWithoutParameters:(SEL)selector class:(Class)class{
     IMP implementation = [class instanceMethodForSelector:selector];
@@ -86,19 +75,13 @@ static IMP implementationAllocWithZone;
         return ((id(*)(id, SEL))implementation)(blockObject, selector);
     };
     IMP blockIMP = imp_implementationWithBlock(block);
-    
-    Method method = class_getClassMethod(class, selector);
-    class_replaceMethod(class,
-                        selector,
-                        blockIMP,
-                        method_getTypeEncoding(method));
+    [self replaceMethod:selector inClass:class byImplementation:blockIMP isResetImplementation:NO];
     
     return implementation;
-
-//    return method_setImplementation(method, blockIMP);
 }
 
-+ (IMP)replaceClassMethodWithOneIncomingParameter:(SEL)selector class:(Class)class {
++ (IMP)replaceClassMethodAllocWithZoneInClass:(Class)class {
+    SEL selector = @selector(allocWithZone:);
     IMP implementation = [class instanceMethodForSelector:selector];
     id block = ^(id blockObject, SEL blockSelector, NSZone *zone) {
         NSLog(@"Method %s call", sel_getName(selector));
@@ -106,42 +89,18 @@ static IMP implementationAllocWithZone;
         return ((id(*)(id, SEL, NSZone *))implementation)(blockObject, blockSelector, zone);
     };
     IMP blockIMP = imp_implementationWithBlock(block);
-    
-    Method method = class_getClassMethod(class, selector);
-    
-    class_replaceMethod(class,
-                        selector,
-                        blockIMP,
-                        method_getTypeEncoding(method));
+    [self replaceMethod:selector inClass:class byImplementation:blockIMP isResetImplementation:NO];
     
     return implementation;
-
-    
-//    return method_setImplementation(method, blockIMP);
-    
 }
 
-+ (void)logInjectionDisable {
-    if (implementationNew) {
-        id objectFromClass = [NSNull class];
-        Class class = object_getClass(objectFromClass);
-        Method method = class_getInstanceMethod(class, @selector(new));
-        method_setImplementation(method, implementationNew);
-        implementationNew = nil;
-        
-        method = class_getInstanceMethod(class, @selector(alloc));
-        method_setImplementation(method, implementationAlloc);
-        implementationAlloc = nil;
-        
-        method = class_getInstanceMethod(class, @selector(null));
-        method_setImplementation(method, implementationNull);
-        implementationNull = nil;
-        
-        method = class_getInstanceMethod(class, @selector(allocWithZone:));
-        method_setImplementation(method, implementationAllocWithZone);
-        implementationAllocWithZone = nil;
-
-    }
++ (void)replaceMethod:(SEL)selector inClass:(Class)class byImplementation:(IMP)implementation isResetImplementation:(BOOL)isResetIMP{
+    Method method = class_getClassMethod(class, selector);
+    class_replaceMethod(class,
+                        selector,
+                        implementation,
+                        method_getTypeEncoding(method));
+    implementation = isResetIMP ? nil : implementation;
 }
 
 @end

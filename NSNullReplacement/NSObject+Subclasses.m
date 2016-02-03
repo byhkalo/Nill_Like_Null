@@ -35,7 +35,9 @@
         NSLog(@"Subclass %ld - %@",(long)result.count , classes[i]);
         [result addObject:classes[i]];
     }
-
+    
+    
+    
     free(classes);
     
     return result;
