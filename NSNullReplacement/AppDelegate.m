@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "NSObject+Subclasses.h"
+#import "NSObject+KBReplaceMethods.h"
 
 @interface AppDelegate ()
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSNull (NillReplacement)
+@interface NSNull (KBNilReplacement)
 
 + (void)logInjectionEnable;
 + (void)logInjectionDisable;

@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (Subclasses)
+@interface NSObject (KBReplaceMethods)
 
++ (void)replaceClassMethodsOldSelector:(SEL)oldSelector byNewSelector:(SEL)newSelector;
 + (NSArray*)subclasses;
 
 @end

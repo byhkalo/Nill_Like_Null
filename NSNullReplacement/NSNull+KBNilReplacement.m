@@ -6,22 +6,22 @@
 //  Copyright © 2016 Anadea. All rights reserved.
 //
 
-#import "NSNull+NillReplacement.h"
+#import "NSNull+KBNilReplacement.h"
 #import "KBObjectNull.h"
 #import <objc/runtime.h>
 
 typedef id(^KBBlockWithImplementation)(IMP implementation);
 
-static IMP implementationNew;
-static IMP implementationAlloc;
-static IMP implementationNull;
-static IMP implementationAllocWithZone;
+static IMP implementationNew = nil;
+static IMP implementationAlloc = nil;
+static IMP implementationNull = nil;
+static IMP implementationAllocWithZone = nil;
 
-@implementation NSNull (NillReplacement)
+@implementation NSNull (KBNilReplacement)
 
 + (void)load {
-    [self replaceClassMethodsOldMethod:@selector(allocWithZone:) byNewSelector:@selector(newAllocWithZone:)];
-    [self replaceClassMethodsOldMethod:@selector(null) byNewSelector:@selector(newNull)];
+    [self replaceClassMethodsOldSelector:@selector(allocWithZone:) byNewSelector:@selector(newAllocWithZone:)];
+    [self replaceClassMethodsOldSelector:@selector(null) byNewSelector:@selector(newNull)];
 }
 
 + (instancetype)newAllocWithZone:(struct _NSZone *)zone {
@@ -32,7 +32,7 @@ static IMP implementationAllocWithZone;
     return [KBObjectNull sharedObject];
 }
 
-+ (void)replaceClassMethodsOldMethod:(SEL)oldSelector byNewSelector:(SEL)newSelector {
++ (void)replaceClassMethodsOldSelector:(SEL)oldSelector byNewSelector:(SEL)newSelector {
     Method newMethod = class_getClassMethod([NSNull class], newSelector);
     IMP newImplementation = method_getImplementation(newMethod);
     
@@ -94,7 +94,7 @@ static IMP implementationAllocWithZone;
     return implementation;
 }
 
-+ (void)replaceMethod:(SEL)selector inClass:(Class)class byImplementation:(IMP)implementation isResetImplementation:(BOOL)isResetIMP{
++ (void)replaceMethod:(SEL)selector inClass:(Class)class byImplementation:(IMP)implementation isResetImplementation:(BOOL)isResetIMP {
     Method method = class_getClassMethod(class, selector);
     class_replaceMethod(class,
                         selector,
