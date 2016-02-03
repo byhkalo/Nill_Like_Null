@@ -31,7 +31,6 @@
 }
 
 - (void)testReplacementNull {
-    
     NSNull* null = [NSNull null];
     
     XCTAssertFalse([null performSelector:@selector(loadView)], @"Must sey NO");
@@ -57,58 +56,25 @@
     
     XCTAssertTrue([null class] == [KBObjectNull class]);
     XCTAssertTrue([null class] == [NSNull class]);
-//    XCTAssertTrue(CGRectIsNull([[NSNull null] valueForKey:@"frame"]) , @"Must return zero");
-    
-    
-}
-
-- (void)testInjectionMethod {
-    
-    SEL selector = @selector(allocWithZone:);
-    
-    id objectFromClass = [NSNull class];
-    Class class = object_getClass(objectFromClass);
-    XCTAssertTrue(class_isMetaClass(class));
-    
-    
-    IMP implementation = [class instanceMethodForSelector:selector];
-    
-    id block = ^(id blockObject, SEL blockSelector, NSZone *zone) {
-        NSLog(@"Help Log");
-        
-        return ((id(*)(id, SEL, NSZone *))implementation)(blockObject, blockSelector, zone);
-    };
-    
-    IMP blockIMP = imp_implementationWithBlock(block);
-    
-    Method method = class_getInstanceMethod(class, selector);
-    class_replaceMethod(class,
-                        selector,
-                        blockIMP,
-                        method_getTypeEncoding(method));
-    
-    
-    [[objectFromClass alloc] init];
-    
-    [[NSNull alloc] init];
 }
 
 - (void)testInjection {
+    NSLog(@"start injection \n\n");
     [NSNull logInjectionEnable];
     
-    NSString *jsonString = @"[{\"id\": null, \"name\":\"Aaa\"}, {\"id\": \"2\", \"name\":\"Bbb\"}]";
+    NSString *jsonString = @"{\"id\": null, \"name\":\"Aaa\"}";
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *e = nil;
-    NSMutableArray *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&e];
-    NSLog(@"%@", json);
+    NSError *error = nil;
+    NSMutableDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     
-    [[NSNull alloc]init];
+    XCTAssertTrue([[dictionary objectForKey:@"id"] isKindOfClass:[NSNull class]]);
+    NSNull *helpNull = [[NSNull alloc]init];
     
     [NSNull logInjectionDisable];
     
-    [[NSNull alloc]init];
+    helpNull = [[NSNull alloc]init];
     
-    NSLog(@"end of injection");
+    NSLog(@"end of injection \n\n");
 }
 
 @end
