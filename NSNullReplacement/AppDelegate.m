@@ -21,8 +21,8 @@
     NSNull* helpNull = [NSNull null];
     NSNull* secondHelpNull = [[NSNull alloc]init];
     NSNull* originNull = [NSNull new];
-    NSArray *helpArray = [NSNull returnSubclassesOfClass];
-    NSArray *SecondArray = [NSArray returnSubclassesOfClass];
+    NSArray *helpArray = [NSNull subclasses];
+    NSArray *SecondArray = [NSArray subclasses];
     
     NSLog(@"testlog");
     // Override point for customization after application launch.

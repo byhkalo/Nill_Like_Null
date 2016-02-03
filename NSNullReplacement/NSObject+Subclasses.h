@@ -10,6 +10,6 @@
 
 @interface NSObject (Subclasses)
 
-+ (NSArray*)returnSubclassesOfClass;
++ (NSArray*)subclasses;
 
 @end
