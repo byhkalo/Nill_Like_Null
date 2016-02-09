@@ -7,6 +7,7 @@
 //
 
 #import "KBObjectNull.h"
+#import "NSMethodSignature+KBProperty.h"
 #import <objc/runtime.h>
 
 @interface KBObjectNull()
@@ -47,13 +48,14 @@
     if (!signature) {
         // Note: "@:" are (id)self and (SEL)_cmd
         signature = [NSMethodSignature signatureWithObjCTypes:"@:"];
+        signature.nilForwarded = YES;
     }
     
     return signature;
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
-    id test = nil;
+    id test = anInvocation.methodSignature.nilForwarded ? nil : [super class];
     [anInvocation invokeWithTarget:test];
 }
 

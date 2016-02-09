@@ -18,6 +18,7 @@
 		2A7159821C47DCBB00A3ED35 /* NSNull+KBNilReplacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7159811C47DCBB00A3ED35 /* NSNull+KBNilReplacement.m */; };
 		2A7159851C47E24E00A3ED35 /* KBObjectNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7159841C47E24E00A3ED35 /* KBObjectNull.m */; };
 		2A7159871C47F7EC00A3ED35 /* NSNullTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7159861C47F7EC00A3ED35 /* NSNullTests.m */; };
+		2A968AAB1C6A3E7600FDF0D6 /* NSMethodSignature+KBProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A968AAA1C6A3E7600FDF0D6 /* NSMethodSignature+KBProperty.m */; };
 		F337CD18D9AD900CA700E873 /* libPods-NSNullReplacementTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 208B5013941660632DDA4DB1 /* libPods-NSNullReplacementTests.a */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,8 @@
 		2A7159831C47E24E00A3ED35 /* KBObjectNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBObjectNull.h; path = Inheritors/NSNull_Inheritors/KBObjectNull.h; sourceTree = "<group>"; };
 		2A7159841C47E24E00A3ED35 /* KBObjectNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBObjectNull.m; path = Inheritors/NSNull_Inheritors/KBObjectNull.m; sourceTree = "<group>"; };
 		2A7159861C47F7EC00A3ED35 /* NSNullTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNullTests.m; sourceTree = "<group>"; };
+		2A968AA91C6A3E7600FDF0D6 /* NSMethodSignature+KBProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMethodSignature+KBProperty.h"; path = "Categories/NSMethodSignature/NSMethodSignature+KBProperty.h"; sourceTree = "<group>"; };
+		2A968AAA1C6A3E7600FDF0D6 /* NSMethodSignature+KBProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMethodSignature+KBProperty.m"; path = "Categories/NSMethodSignature/NSMethodSignature+KBProperty.m"; sourceTree = "<group>"; };
 		497E867C5F9884424F4A1A3A /* Pods-NSNullReplacementTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSNullReplacementTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NSNullReplacementTests/Pods-NSNullReplacementTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +154,7 @@
 		2A71597F1C47DC8700A3ED35 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				2A968AAC1C6A3ED500FDF0D6 /* NSMethodSignature */,
 				2A968AA11C6A2BCE00FDF0D6 /* NSNull */,
 				2A968AA21C6A2BD000FDF0D6 /* NSObject */,
 			);
@@ -191,6 +195,15 @@
 				2A71595A1C47BDCC00A3ED35 /* KBViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		2A968AAC1C6A3ED500FDF0D6 /* NSMethodSignature */ = {
+			isa = PBXGroup;
+			children = (
+				2A968AA91C6A3E7600FDF0D6 /* NSMethodSignature+KBProperty.h */,
+				2A968AAA1C6A3E7600FDF0D6 /* NSMethodSignature+KBProperty.m */,
+			);
+			name = NSMethodSignature;
 			sourceTree = "<group>";
 		};
 		74351EAF8C97590D0980C882 /* Frameworks */ = {
@@ -356,6 +369,7 @@
 				2A7159851C47E24E00A3ED35 /* KBObjectNull.m in Sources */,
 				2A71595B1C47BDCC00A3ED35 /* KBViewController.m in Sources */,
 				2A6D87371C51102F00516A65 /* NSObject+KBReplaceMethods.m in Sources */,
+				2A968AAB1C6A3E7600FDF0D6 /* NSMethodSignature+KBProperty.m in Sources */,
 				2A7159821C47DCBB00A3ED35 /* NSNull+KBNilReplacement.m in Sources */,
 				2A7159581C47BDCC00A3ED35 /* AppDelegate.m in Sources */,
 				2A7159551C47BDCC00A3ED35 /* main.m in Sources */,
