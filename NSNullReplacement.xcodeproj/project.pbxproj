@@ -10,7 +10,7 @@
 		2A6D87371C51102F00516A65 /* NSObject+KBReplaceMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D87361C51102F00516A65 /* NSObject+KBReplaceMethods.m */; };
 		2A7159551C47BDCC00A3ED35 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7159541C47BDCC00A3ED35 /* main.m */; };
 		2A7159581C47BDCC00A3ED35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7159571C47BDCC00A3ED35 /* AppDelegate.m */; };
-		2A71595B1C47BDCC00A3ED35 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A71595A1C47BDCC00A3ED35 /* ViewController.m */; };
+		2A71595B1C47BDCC00A3ED35 /* KBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A71595A1C47BDCC00A3ED35 /* KBViewController.m */; };
 		2A71595E1C47BDCC00A3ED35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A71595C1C47BDCC00A3ED35 /* Main.storyboard */; };
 		2A7159601C47BDCC00A3ED35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A71595F1C47BDCC00A3ED35 /* Assets.xcassets */; };
 		2A7159631C47BDCC00A3ED35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7159611C47BDCC00A3ED35 /* LaunchScreen.storyboard */; };
@@ -34,14 +34,14 @@
 /* Begin PBXFileReference section */
 		094CF6E671CE361B9C40C716 /* Pods-NSNullReplacementTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSNullReplacementTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NSNullReplacementTests/Pods-NSNullReplacementTests.debug.xcconfig"; sourceTree = "<group>"; };
 		208B5013941660632DDA4DB1 /* libPods-NSNullReplacementTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NSNullReplacementTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A6D87351C51102F00516A65 /* NSObject+KBReplaceMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KBReplaceMethods.h"; sourceTree = "<group>"; };
-		2A6D87361C51102F00516A65 /* NSObject+KBReplaceMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KBReplaceMethods.m"; sourceTree = "<group>"; };
+		2A6D87351C51102F00516A65 /* NSObject+KBReplaceMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+KBReplaceMethods.h"; path = "Categories/NSObject/NSObject+KBReplaceMethods.h"; sourceTree = "<group>"; };
+		2A6D87361C51102F00516A65 /* NSObject+KBReplaceMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+KBReplaceMethods.m"; path = "Categories/NSObject/NSObject+KBReplaceMethods.m"; sourceTree = "<group>"; };
 		2A7159501C47BDCC00A3ED35 /* NSNullReplacement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSNullReplacement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7159541C47BDCC00A3ED35 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A7159561C47BDCC00A3ED35 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2A7159571C47BDCC00A3ED35 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2A7159591C47BDCC00A3ED35 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		2A71595A1C47BDCC00A3ED35 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2A7159591C47BDCC00A3ED35 /* KBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KBViewController.h; path = Controllers/KBViewController.h; sourceTree = "<group>"; };
+		2A71595A1C47BDCC00A3ED35 /* KBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KBViewController.m; path = Controllers/KBViewController.m; sourceTree = "<group>"; };
 		2A71595D1C47BDCC00A3ED35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A71595F1C47BDCC00A3ED35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A7159621C47BDCC00A3ED35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,10 +49,10 @@
 		2A7159691C47BDCC00A3ED35 /* NSNullReplacementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NSNullReplacementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A71596D1C47BDCC00A3ED35 /* NSNullReplacementTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNullReplacementTests.m; sourceTree = "<group>"; };
 		2A71596F1C47BDCC00A3ED35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A7159801C47DCBB00A3ED35 /* NSNull+KBNilReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+KBNilReplacement.h"; sourceTree = "<group>"; };
-		2A7159811C47DCBB00A3ED35 /* NSNull+KBNilReplacement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+KBNilReplacement.m"; sourceTree = "<group>"; };
-		2A7159831C47E24E00A3ED35 /* KBObjectNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBObjectNull.h; sourceTree = "<group>"; };
-		2A7159841C47E24E00A3ED35 /* KBObjectNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBObjectNull.m; sourceTree = "<group>"; };
+		2A7159801C47DCBB00A3ED35 /* NSNull+KBNilReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNull+KBNilReplacement.h"; path = "Categories/NSNull/NSNull+KBNilReplacement.h"; sourceTree = "<group>"; };
+		2A7159811C47DCBB00A3ED35 /* NSNull+KBNilReplacement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSNull+KBNilReplacement.m"; path = "Categories/NSNull/NSNull+KBNilReplacement.m"; sourceTree = "<group>"; };
+		2A7159831C47E24E00A3ED35 /* KBObjectNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBObjectNull.h; path = Inheritors/NSNull_Inheritors/KBObjectNull.h; sourceTree = "<group>"; };
+		2A7159841C47E24E00A3ED35 /* KBObjectNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBObjectNull.m; path = Inheritors/NSNull_Inheritors/KBObjectNull.m; sourceTree = "<group>"; };
 		2A7159861C47F7EC00A3ED35 /* NSNullTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNullTests.m; sourceTree = "<group>"; };
 		497E867C5F9884424F4A1A3A /* Pods-NSNullReplacementTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSNullReplacementTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NSNullReplacementTests/Pods-NSNullReplacementTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,8 +110,7 @@
 			children = (
 				2A7159561C47BDCC00A3ED35 /* AppDelegate.h */,
 				2A7159571C47BDCC00A3ED35 /* AppDelegate.m */,
-				2A7159591C47BDCC00A3ED35 /* ViewController.h */,
-				2A71595A1C47BDCC00A3ED35 /* ViewController.m */,
+				2A968AA41C6A2C0600FDF0D6 /* Controllers */,
 				2A71597F1C47DC8700A3ED35 /* Categories */,
 				2A71597E1C47DB2B00A3ED35 /* Inheritors */,
 				2A71595C1C47BDCC00A3ED35 /* Main.storyboard */,
@@ -144,8 +143,7 @@
 		2A71597E1C47DB2B00A3ED35 /* Inheritors */ = {
 			isa = PBXGroup;
 			children = (
-				2A7159831C47E24E00A3ED35 /* KBObjectNull.h */,
-				2A7159841C47E24E00A3ED35 /* KBObjectNull.m */,
+				2A968AA31C6A2BEB00FDF0D6 /* NSNull_Inheritors */,
 			);
 			name = Inheritors;
 			sourceTree = "<group>";
@@ -153,12 +151,46 @@
 		2A71597F1C47DC8700A3ED35 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				2A968AA11C6A2BCE00FDF0D6 /* NSNull */,
+				2A968AA21C6A2BD000FDF0D6 /* NSObject */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		2A968AA11C6A2BCE00FDF0D6 /* NSNull */ = {
+			isa = PBXGroup;
+			children = (
 				2A7159801C47DCBB00A3ED35 /* NSNull+KBNilReplacement.h */,
 				2A7159811C47DCBB00A3ED35 /* NSNull+KBNilReplacement.m */,
+			);
+			name = NSNull;
+			sourceTree = "<group>";
+		};
+		2A968AA21C6A2BD000FDF0D6 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
 				2A6D87351C51102F00516A65 /* NSObject+KBReplaceMethods.h */,
 				2A6D87361C51102F00516A65 /* NSObject+KBReplaceMethods.m */,
 			);
-			name = Categories;
+			name = NSObject;
+			sourceTree = "<group>";
+		};
+		2A968AA31C6A2BEB00FDF0D6 /* NSNull_Inheritors */ = {
+			isa = PBXGroup;
+			children = (
+				2A7159831C47E24E00A3ED35 /* KBObjectNull.h */,
+				2A7159841C47E24E00A3ED35 /* KBObjectNull.m */,
+			);
+			name = NSNull_Inheritors;
+			sourceTree = "<group>";
+		};
+		2A968AA41C6A2C0600FDF0D6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2A7159591C47BDCC00A3ED35 /* KBViewController.h */,
+				2A71595A1C47BDCC00A3ED35 /* KBViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		74351EAF8C97590D0980C882 /* Frameworks */ = {
@@ -322,7 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A7159851C47E24E00A3ED35 /* KBObjectNull.m in Sources */,
-				2A71595B1C47BDCC00A3ED35 /* ViewController.m in Sources */,
+				2A71595B1C47BDCC00A3ED35 /* KBViewController.m in Sources */,
 				2A6D87371C51102F00516A65 /* NSObject+KBReplaceMethods.m in Sources */,
 				2A7159821C47DCBB00A3ED35 /* NSNull+KBNilReplacement.m in Sources */,
 				2A7159581C47BDCC00A3ED35 /* AppDelegate.m in Sources */,

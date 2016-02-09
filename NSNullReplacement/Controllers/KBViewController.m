@@ -6,13 +6,13 @@
 //  Copyright © 2016 Anadea. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "KBViewController.h"
 
-@interface ViewController ()
+@interface KBViewController ()
 
 @end
 
-@implementation ViewController
+@implementation KBViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

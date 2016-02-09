@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
-#import "NSNull+NillReplacement.h"
+#import "NSNull+KBNilReplacement.h"
 #import "KBObjectNull.h"
 
 @interface NSNullReplacementTests : XCTestCase {

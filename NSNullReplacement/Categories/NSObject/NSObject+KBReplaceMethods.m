@@ -38,18 +38,17 @@
     
     free(classes);
     
-    return result;
+    return [result copy];
 }
 
-+ (void)replaceClassMethodsOldSelector:(SEL)oldSelector byNewSelector:(SEL)newSelector {
++ (void)replaceClassMethodsOldSelectorImplementation:(SEL)oldSelector byNewSelector:(SEL)newSelector {
     Method newMethod = class_getClassMethod(self, newSelector);
     IMP newImplementation = method_getImplementation(newMethod);
     
-    Method method = class_getClassMethod([NSNull class], oldSelector);
-    method_setImplementation(method, newImplementation);
+    [self replaceMethod:oldSelector inClass:[self metaclass] byIMP:newImplementation isResetIMP:NO];
 }
 
-+ (void)replaceMethod:(SEL)selector inClass:(Class)class byImplementation:(IMP)implementation isResetImplementation:(BOOL)isResetIMP {
++ (void)replaceMethod:(SEL)selector inClass:(Class)class byIMP:(IMP)implementation isResetIMP:(BOOL)isResetIMP; {
     Method method = class_getClassMethod(class, selector);
     class_replaceMethod(class,
                         selector,
@@ -58,5 +57,11 @@
     implementation = isResetIMP ? nil : implementation;
 }
 
+#pragma mark -
+#pragma mark Metaclass -
+
++ (Class)metaclass {
+    return object_getClass([NSNull class]);
+}
 
 @end

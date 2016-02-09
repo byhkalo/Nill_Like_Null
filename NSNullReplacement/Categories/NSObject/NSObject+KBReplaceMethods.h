@@ -10,7 +10,9 @@
 
 @interface NSObject (KBReplaceMethods)
 
-+ (void)replaceClassMethodsOldSelector:(SEL)oldSelector byNewSelector:(SEL)newSelector;
++ (Class)metaclass;
 + (NSArray*)subclasses;
++ (void)replaceClassMethodsOldSelectorImplementation:(SEL)oldSelector byNewSelector:(SEL)newSelector;
++ (void)replaceMethod:(SEL)selector inClass:(Class)class byIMP:(IMP)implementation isResetIMP:(BOOL)isResetIMP;
 
 @end
