@@ -10,7 +10,14 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import "NSNull+KBNilReplacement.h"
+#import "NSObject+KBReplaceMethods.h"
 #import "KBObjectNull.h"
+
+static IMP implementationNew = nil;
+static IMP implementationAlloc = nil;
+static IMP implementationNull = nil;
+static IMP implementationAllocWithZone = nil;
+static NSMutableArray *callingMethods = nil;
 
 @interface NSNullReplacementTests : XCTestCase {
    
@@ -60,7 +67,9 @@
 
 - (void)testInjection {
     NSLog(@"start injection \n\n");
-    [NSNull logInjectionEnable];
+    callingMethods = [NSMutableArray array];
+    
+    [self logInjectionEnable];
     
     NSString *jsonString = @"{\"id\": null, \"name\":\"Aaa\"}";
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
@@ -68,13 +77,72 @@
     NSMutableDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     
     XCTAssertTrue([[dictionary objectForKey:@"id"] isKindOfClass:[NSNull class]]);
-    NSNull *helpNull = [[NSNull alloc]init];
+    XCTAssertEqual(callingMethods.count, 1);
+    XCTAssertTrue([callingMethods.firstObject isEqualToString:@"null"]);
     
-    [NSNull logInjectionDisable];
+    [self logInjectionDisable];
     
-    helpNull = [[NSNull alloc]init];
+    [NSNull null];
+    
+    XCTAssertEqual(callingMethods.count, 1);
     
     NSLog(@"end of injection \n\n");
 }
+
+- (void)logInjectionEnable {
+    if (!implementationNew) {
+        Class class = [NSNull metaclass];
+        
+        implementationNew = [self replaceClassMethodWithoutParameters:@selector(new) class:[NSNull metaclass]];
+        implementationAlloc = [self replaceClassMethodWithoutParameters:@selector(alloc) class:class];
+        implementationNull = [self replaceClassMethodWithoutParameters:@selector(null) class:class];
+        implementationAllocWithZone = [self replaceClassMethodAllocWithZoneInClass:class];
+    }
+}
+
+- (void)logInjectionDisable {
+    if (implementationNew) {
+        Class class = [NSNull metaclass];
+        
+        [NSNull replaceMethod:@selector(new) inClass:class byIMP:implementationNew isResetIMP:YES];
+        [NSNull replaceMethod:@selector(alloc) inClass:class byIMP:implementationAlloc isResetIMP:YES];
+        [NSNull replaceMethod:@selector(null) inClass:class byIMP:implementationNull isResetIMP:YES];
+        [NSNull replaceMethod:@selector(allocWithZone:) inClass:class byIMP:implementationAllocWithZone isResetIMP:YES];
+    }
+}
+
+- (IMP)replaceClassMethodWithoutParameters:(SEL)selector class:(Class)class{
+    IMP implementation = [class instanceMethodForSelector:selector];
+    
+    id block = ^(id blockObject, SEL blockSelector) {
+        NSString *stringSelector = NSStringFromSelector(selector);
+        NSLog(@"Method %@ call", stringSelector);
+        [callingMethods addObject:stringSelector];
+        
+        return ((id(*)(id, SEL))implementation)(blockObject, selector);
+    };
+    IMP blockIMP = imp_implementationWithBlock(block);
+    [[NSNull class] replaceMethod:selector inClass:class byIMP:blockIMP isResetIMP:NO];
+    
+    return implementation;
+}
+
+- (IMP)replaceClassMethodAllocWithZoneInClass:(Class)class {
+    SEL selector = @selector(allocWithZone:);
+    IMP implementation = [class instanceMethodForSelector:selector];
+    
+    id block = ^(id blockObject, SEL blockSelector, NSZone *zone) {
+        NSString *stringSelector = NSStringFromSelector(selector);
+        NSLog(@"Method %s call", sel_getName(selector));
+        [callingMethods addObject:stringSelector];
+        
+        return ((id(*)(id, SEL, NSZone *))implementation)(blockObject, blockSelector, zone);
+    };
+    IMP blockIMP = imp_implementationWithBlock(block);
+    [NSNull replaceMethod:selector inClass:class byIMP:blockIMP isResetIMP:NO];
+    
+    return implementation;
+}
+
 
 @end
